@@ -1,0 +1,27 @@
+﻿@model ToDoList.Models.ToDoItem
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>My ToDo List</h1>
+
+<div id="tableDiv"></div>
+<div id="createToDoItemDiv">
+    <form asp-action="AjaxCreate">
+        <label asp-for="Description" class="control-label"><span class="descriptionField">Create new item</span></label>
+        <input asp-for="Description" class="form-control" placeholder="Write a description" autocomplete="off" required />
+        <span asp-validation-for="Description" class="text-danger"></span>
+        <div asp-action="AjaxCreate" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#tableDiv" method="post">
+            <input type="submit" value="Create" class="btn btn-primary createButton"/>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <script src="~/js/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/js/BuildTable.js"></script>
+    <script src="~/js/jquery.validate.js"></script>
+}
+
+
